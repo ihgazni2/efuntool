@@ -34,6 +34,14 @@ def keep_ptr_wrapper(func):
 
 
 
+def dflt_sysargv(dflt,which):
+    try:
+        rslt = sys.argv[which]
+    except:
+        rslt = which
+    else:
+        pass
+    return(dflt)
 
 
 def dflt_kwargs(k,dflt,**kwargs):
