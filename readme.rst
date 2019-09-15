@@ -30,7 +30,7 @@ APIS
 - def self_kwargs(self,kl,dfltl,**kwargs):
 - def de_args(kl,dfltl,*args):
 - def pipeline(funcs):
-
+- def reorder_params_trans(f,param_seqs)：
         
 
 License
