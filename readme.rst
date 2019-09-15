@@ -31,7 +31,9 @@ APIS
 - def de_args(kl,dfltl,*args):
 - def pipeline(funcs):
 - def reorder_params_trans(f,param_seqs)：
-        
+- def args2dict_trans(f):
+- def bool_op(op,cond1,cond2):
+- def bool_funcs_ops(funcs,ops):  
 
 License
 =======

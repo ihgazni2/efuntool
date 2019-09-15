@@ -1,6 +1,8 @@
 import functools
 import copy
 import elist.elist as elel
+import inspect
+
 
 def reorder_params_trans(f,param_seqs):
     def new_func(*args):
@@ -8,6 +10,16 @@ def reorder_params_trans(f,param_seqs):
         return(f(*new_sorted_args))
     return(new_func)
 
+def args2dict_trans(f):
+    arg_names = inspect.getfullargspec(f).args
+    def _func(arg_names,d):
+        args = []
+        for i in range(len(arg_names)):
+            k = arg_names[i]
+            args.append(d[k])
+        return(f(*args))
+    func = functools.partial(_func,arg_names)
+    return(func)
 
 
 
@@ -21,7 +33,6 @@ def inplace_wrapper(func):
             nobj = copy.deepcopy(obj)
             return(func(nobj,**kwargs))
     return(wrapper)
-
 
 def keep_ptr_wrapper(func):
     @functools.wraps(func)
@@ -41,7 +52,6 @@ def keep_ptr_wrapper(func):
         else:
             return(nobj)
     return(wrapper)
-
 
 
 def dflt_sysargv(dflt,which):
@@ -85,7 +95,6 @@ def de_args(kl,dfltl,*args):
     return(d)
 
 
-
 def pipeline(funcs):
     def _pipeline(funcs,arg):
         func = funcs[0]
@@ -97,3 +106,39 @@ def pipeline(funcs):
     p = functools.partial(_pipeline,funcs)
     return(p)
 
+
+
+
+####
+
+
+def bool_op(op,cond1,cond2):
+    op = op.lower()
+    if(op == "and"):
+        return(bool(cond1 and cond2))
+    elif(op == "or"):
+        return(bool(cond1 or cond2))
+    elif(op == "not"):
+        return(not(cond1))
+    elif(op == "xor"):
+        c1 = bool(not(cond1) and cond2)
+        c2 = bool(cond1 and not(cond2))
+        c = bool(c1 or c2)
+        return(c)
+    else:
+        raise(SyntaxError("not supported op: "+op))
+
+
+def bool_funcs_ops(funcs,ops):
+    def _rslt(funcs,ops,arg):
+        rslts = []
+        for i in range(len(funcs)):
+            rslt = bool(funcs[i](arg))
+            rslts.append(rslt)
+        cond = rslts[0]
+        for i in range(1,len(rslts)):
+            op = ops[i-1]
+            cond = bool_op(op,cond,rslts[i])
+        return(cond)
+    p = functools.partial(_rslt,funcs,ops)
+    return(p)
