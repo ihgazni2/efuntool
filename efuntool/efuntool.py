@@ -1,5 +1,15 @@
 import functools
 import copy
+import elist.elist as elel
+
+def reorder_params_trans(f,param_seqs):
+    def new_func(*args):
+        new_sorted_args = elel.select_seqs(args,param_seqs)
+        return(f(*new_sorted_args))
+    return(new_func)
+
+
+
 
 def inplace_wrapper(func):
     @functools.wraps(func)
@@ -73,6 +83,7 @@ def de_args(kl,dfltl,*args):
         k = kl[i]
         d[k] = dfltl[i]
     return(d)
+
 
 
 def pipeline(funcs):
