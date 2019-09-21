@@ -3,6 +3,53 @@ import copy
 import elist.elist as elel
 import inspect
 
+
+######################################################
+# lambda number
+# this will count how many recursives done 
+###########
+
+def cygnus():
+    def egg(*o):
+        lngth = len(o)
+        if(lngth == 0):
+            egg.count = 1
+            return(egg)
+        else:
+            o = o[0]
+            o.count = o.count + 1
+        return(o)
+    egg.__setattr__("count",0)
+    return(egg)
+
+#####################################
+# how many calls done
+#####################################
+
+def duck():
+    def egg():
+        egg.count = egg.count + 1
+        return(egg)
+    egg.__setattr__("count",0)
+    return(egg)
+
+
+#########
+#params history record
+##############
+
+def hen():
+    def egg(zero):
+        if(hasattr(egg,zero)):
+            count = egg.__getattribute__(zero)
+            count = count + 1
+            egg.__setattr__(zero,count)
+        else:
+            egg.__setattr__(zero,1)
+        return(egg)
+    return(egg)
+
+
 ########################################################
 ##simulate  curry
 
