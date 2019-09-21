@@ -3,6 +3,36 @@ import copy
 import elist.elist as elel
 import inspect
 
+########################################################
+##simulate  curry
+
+def goose():
+    def egg(*args):
+        egg.arguments.extend(args)
+        return(egg)
+    egg.__setattr__("arguments",[])
+    return(egg)
+
+
+class curry():
+    def __init__(self,orig_func,params_count):
+        self.orig_func = orig_func
+        self.params_count = params_count
+        self.egg = goose()
+    def __call__(self,*args):
+        count = self.params_count
+        orig_func = self.orig_func
+        egg = self.egg
+        egg(*args)
+        args_lngth = len(egg.arguments)
+        if(args_lngth<count):
+            return(self)
+        else:
+            args = egg.arguments
+            egg.arguments = []
+            return(orig_func(*args))
+
+########################################################
 
 def reorder_params_trans(f,param_seqs):
     def new_func(*args):
