@@ -16,7 +16,12 @@ Installation
 
 Usage
 =====
-    
+
+curry
+~~~~~
+- wrap a function, currify the params, return a new function
+- similiar to curry in lodash(javascript)
+
     ::
         
         import efuntool.efuntool as eftl
@@ -90,9 +95,73 @@ Usage
         >>>
 
 
+cygnus
+~~~~~~
+- count how many recursives done
+
+    ::
+        
+        import efuntool.efuntool as eftl
+        >>> egg = eftl.cygnus()
+        >>> egg.count
+        0
+        >>> egg()
+        >>> egg.count
+        1
+        >>> egg(
+                egg()
+            )
+        >>> egg.count
+        2
+        >>> egg(
+                egg(
+                    egg()
+                )
+            )
+        >>> egg.count
+        3
+
+
+duck
+~~~~
+- count how many calls done
+
+    ::
+        
+        import efuntool.efuntool as eftl
+        >>> egg = eftl.duck()
+        >>> egg.count
+        0
+        >>> egg()
+        >>> egg.count
+        1
+        >>> egg()
+        >>> egg.count
+        2
+        >>>
+
+hen        
+~~~
+- record params history
+    
+    ::
+        
+        import efuntool.efuntool as eftl
+        >>> egg = eftl.hen()
+        >>> egg("a")
+        >>> egg("a")
+        >>> egg.a
+        2
+        >>> egg("b")
+        >>> egg("b")
+        >>> egg("b")
+        >>> egg.b
+        3
+        
+
 
 APIS        
-~~~~
+====
 
 - def goose():
 - def curry(orig_func,params_count):
@@ -106,6 +175,10 @@ APIS
 - def args2dict_trans(f):
 - def bool_op(op,cond1,cond2):
 - def bool_funcs_ops(funcs,ops):  
+- def hen():
+- def duck():
+- def cygnus():
+
 
 License
 =======
