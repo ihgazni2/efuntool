@@ -165,8 +165,11 @@ APIS
 
 - def goose():
 - def curry(orig_func,params_count):
-- def inplace_wrapper(func):
-- def keep_ptr_wrapper(func):
+- def copyornot_wrapper(func):
+- def force_deepcopy_wrapper(func):
+- def deepcopy_and_keep_ptr_wrapper(func):
+- def force_deepcopy_and_keep_ptr_wrapper(func):
+- def force_inplace_and_keep_ptr_wrapper(func):
 - def dflt_kwargs(k,dflt,**kwargs):
 - def self_kwargs(self,kl,dfltl,**kwargs):
 - def de_args(kl,dfltl,*args):

@@ -98,24 +98,69 @@ def args2dict_trans(f):
     func = functools.partial(_func,arg_names)
     return(func)
 
+##############################################
 
-
-def inplace_wrapper(func):
+def deepcopy_wrapper(func):
+    '''
+        inplace or not
+        dflt not
+    '''
     @functools.wraps(func)
-    def wrapper(obj,**kwargs):
+    def wrapper(obj,*args,**kwargs):
         inplace = dflt_kwargs('inplace',False,**kwargs)
         if(inplace):
-            return(func(obj,**kwargs))
+            return(func(obj,*args,**kwargs))
         else:
             nobj = copy.deepcopy(obj)
-            return(func(nobj,**kwargs))
+            return(func(nobj,*args,**kwargs))
     return(wrapper)
 
-def keep_ptr_wrapper(func):
+
+def force_deepcopy_wrapper(func):
+    @functools.wraps(func)
+    def wrapper(obj,*args,**kwargs):
+        nobj = copy.deepcopy(obj)
+        return(func(nobj,*args,**kwargs))
+    return(wrapper)
+
+#######################################################
+
+def force_deepcopy_and_keep_ptr_wrapper(func):
+    @functools.wraps(func)
+    def wrapper(obj,*args,**kwargs):
+        nobj = copy.deepcopy(obj)
+        nobj = func(nobj,*args,**kwargs)
+        obj.clear()
+        if(isinstance(obj,list)):
+            obj.extend(nobj)
+        elif(isinstance(obj,dict)):
+            obj.update(nobj)
+        else:
+            pass
+        return(obj)
+    return(wrapper)
+
+def force_inplace_and_keep_ptr_wrapper(func):
+    @functools.wraps(func)
+    def wrapper(obj,*args,**kwargs):
+        nobj = func(obj,*args,**kwargs)
+        obj.clear()
+        if(isinstance(obj,list)):
+            obj.extend(nobj)
+        elif(isinstance(obj,dict)):
+            obj.update(nobj)
+        else:
+            pass
+        return(obj)
+    return(wrapper)
+
+
+def deepcopy_and_keep_ptr_wrapper(func):
     @functools.wraps(func)
     def wrapper(obj,*args,**kwargs):
         keep_ptr = dflt_kwargs('keep_ptr',False,**kwargs)
-        nobj = copy.deepcopy(obj)
+        deep_copy =  dflt_kwargs('deep_copy',True,**kwargs)
+        nobj = (copy.deepcopy(obj) if(deep_copy) else obj)
         nobj = func(nobj,*args,**kwargs)
         if(keep_ptr):
             obj.clear()
@@ -130,6 +175,8 @@ def keep_ptr_wrapper(func):
             return(nobj)
     return(wrapper)
 
+
+################
 
 def dflt_sysargv(dflt,which):
     try:
