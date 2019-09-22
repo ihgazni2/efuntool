@@ -171,6 +171,7 @@ APIS
 - def self_kwargs(self,kl,dfltl,**kwargs):
 - def de_args(kl,dfltl,*args):
 - def pipeline(funcs):
+- def params_pipeline(f,orig,*args):
 - def reorder_params_trans(f,param_seqs)：
 - def args2dict_trans(f):
 - def bool_op(op,cond1,cond2):

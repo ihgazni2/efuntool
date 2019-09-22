@@ -184,7 +184,10 @@ def pipeline(funcs):
     return(p)
 
 
-
+def params_pipeline(f,orig,*args):
+    for i in range(len(args)):
+        orig = f(orig,*args[i])
+    return(orig)
 
 ####
 
