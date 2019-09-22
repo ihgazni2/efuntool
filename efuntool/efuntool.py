@@ -113,10 +113,10 @@ def inplace_wrapper(func):
 
 def keep_ptr_wrapper(func):
     @functools.wraps(func)
-    def wrapper(obj,**kwargs):
+    def wrapper(obj,*args,**kwargs):
         keep_ptr = dflt_kwargs('keep_ptr',False,**kwargs)
         nobj = copy.deepcopy(obj)
-        nobj = func(nobj,**kwargs)
+        nobj = func(nobj,*args,**kwargs)
         if(keep_ptr):
             obj.clear()
             if(isinstance(obj,list)):
