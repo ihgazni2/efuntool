@@ -197,6 +197,11 @@ def dflt_kwargs(k,dflt,**kwargs):
 
 
 def self_kwargs(self,kl,dfltl,**kwargs):
+    '''
+        in class  __init__
+        kwargs  to  property
+        kwargs_to_property_in_cls_init
+    '''
     for i in range(len(kl)):
         k = kl[i]
         if(k in kwargs):
@@ -205,8 +210,25 @@ def self_kwargs(self,kl,dfltl,**kwargs):
             self.__setattr__(k,dfltl[i])
     return(self)
 
+def kwargs_to_property_in_cls_init(self,kl,dfltl,**kwargs):
+    return(self_kwargs(self,kl,dfltl,**kwargs))
+
 
 def de_args(kl,dfltl,*args):
+    '''
+        dictize args
+        de_args(kl,dfltl,*args)
+
+        kl = ['k1','k2','k3','k4']
+        dfltl = [3,4]
+        de_args(kl,dfltl,'a','b')
+        {
+            'k1':'a',
+            'k2':'b',
+            'k3':3,
+            'k4':4
+        }
+    '''
     d = {}
     args_len = len(args)
     kl_len = len(kl)
@@ -218,6 +240,26 @@ def de_args(kl,dfltl,*args):
         d[k] = dfltl[i]
     return(d)
 
+
+def dictize_args(kl,dfltl,*args):
+    return(de_args(kl,dfltl,*args))
+
+
+def compatibize_apply_or_call_args(*args,**kwargs):
+    args = list(args)
+    lngth  = len(args)
+    if(lngth == 0):
+        pass
+    elif(lngth >= 2):
+        pass
+    else:
+        if(isinstance(args[0],list)):
+            args  = args[0]
+        else:
+            pass
+    return(args)
+
+#################################
 
 def pipeline(funcs):
     def _pipeline(funcs,arg):

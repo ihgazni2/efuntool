@@ -172,7 +172,10 @@ APIS
 - def force_inplace_and_keep_ptr_wrapper(func):
 - def dflt_kwargs(k,dflt,**kwargs):
 - def self_kwargs(self,kl,dfltl,**kwargs):
+- def kwargs_to_property_in_cls_init(self,kl,dfltl,**kwargs):
 - def de_args(kl,dfltl,*args):
+- def dictize_args(kl,dfltl,*args):
+- def compatibize_apply_or_call_args(*args,**kwargs):
 - def pipeline(funcs):
 - def params_pipeline(f,orig,*args):
 - def reorder_params_trans(f,param_seqs)：
