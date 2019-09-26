@@ -159,8 +159,8 @@ hen
         3
 
 
-import
-~~~~~~
+import ebojtool
+~~~~~~~~~~~~~~~~
 
     ::
 
@@ -224,5 +224,95 @@ import
 
 
 .. image:: ./images/get_own_attrs.svg
+
+
+3. get_inherited_attrs
+~~~~~~~~~~~~~~~~~~~~~~
+
+    ::
+
+
+                >>> class tst():
+                ...     def __init__(self):
+                ...         self._u = "_u"
+                ...         self.u = "u"
+                ...
+                >>> t = tst()
+                >>>
+                >>> get_inherited_attrs(t,0)
+                ['_u', 'u']
+                >>>
+                >>> get_inherited_attrs(t,1)
+                ['__dict__', '__module__', '__weakref__']
+                >>>
+                >>> get_inherited_attrs(t,2)
+                ['__class__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__']
+                >>>
+                >>> get_inherited_attrs(t,0,1)
+                ['_u', 'u', '__dict__', '__module__', '__weakref__']
+                >>>
+
+
+.. image:: ./images/get_inherited_attrs.svg
+
+4. get_own_visible_attrs
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+    ::
+
+
+                >>> class tst():
+                ...     def __init__(self):
+                ...         self._u = "_u"
+                ...         self.u = "u"
+                ...
+                >>> t = tst()
+                >>>
+                >>> get_own_visible_attrs(t)
+                ['u']
+                >>>
+
+
+.. image:: ./images/get_own_visible_attrs.svg
+
+5. get_own_priv_attrs
+~~~~~~~~~~~~~~~~~~~~~
+
+    ::
+
+
+                >>> class tst():
+                ...     def __init__(self):
+                ...         self._u = "_u"
+                ...         self.u = "u"
+                ...
+                >>> t = tst()
+                >>>
+                >>> get_own_priv_attrs(t)
+                ['_u']
+                >>>
+
+
+.. image:: ./images/get_own_priv_attrs.svg
+
+6. get_own_builtin_attrs
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+    ::
+
+
+                >>> class tst():
+                ...     def __init__(self):
+                ...         self._u = "_u"
+                ...         self.u = "u"
+                ...
+                >>> t = tst()
+                >>>
+                >>> get_own_buildin_attrs(t)
+                []
+                >>>
+
+
+.. image:: ./images/get_own_builtin_attrs.svg
 
 
