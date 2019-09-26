@@ -420,4 +420,70 @@ import ebojtool
 .. image:: ./images/get_all_builtin_attrs.svg
 
 
+13. get_all_priv_attrs
+~~~~~~~~~~~~~~~~~~~~~~
+
+    ::
+
+
+                class tst():
+                    def __init__(self):
+                        self._u = "_u"
+                        self.u = "u"
+
+                t = tst()
+                >>> get_all_priv_attrs(t)
+                ['_u']
+                >>>
+
+
+.. image:: ./images/get_all_priv_attrs.svg
+
+
+APIS        
+====
+
+- def goose():
+- def curry(orig_func,params_count):
+- def copyornot_wrapper(func):
+- def force_deepcopy_wrapper(func):
+- def deepcopy_and_keep_ptr_wrapper(func):
+- def force_deepcopy_and_keep_ptr_wrapper(func):
+- def force_inplace_and_keep_ptr_wrapper(func):
+- def dflt_kwargs(k,dflt,**kwargs):
+- def self_kwargs(self,kl,dfltl,**kwargs):
+- def kwargs_to_property_in_cls_init(self,kl,dfltl,**kwargs):
+- def de_args(kl,dfltl,*args):
+- def dictize_args(kl,dfltl,*args):
+- def compatibize_apply_or_call_args(*args,**kwargs):
+- def pipeline(funcs):
+- def params_pipeline(f,orig,*args):
+- def reorder_params_trans(f,param_seqs)：
+- def args2dict_trans(f):
+- def bool_op(op,cond1,cond2):
+- def bool_funcs_ops(funcs,ops):  
+- def hen():
+- def duck():
+- def cygnus():
+- def get_mros(obj):
+- def get_attrs_chain(obj):
+- def get_own_attrs(obj):
+- def get_inherited_attrs(obj,*whiches):
+- def get_own_visible_attrs(obj):
+- def get_own_priv_attrs(obj):
+- def get_own_builtin_attrs(obj):
+- def get_inherited_visible_attrs(obj,*whiches):
+- def get_inherited_priv_attrs(obj,*whiches):
+- def get_inherited_builtin_attrs(obj,*whiches):
+- def get_all_attrs(obj):
+- def get_all_visible_attrs(obj):
+- def get_all_builtin_attrs(obj):
+- def get_all_priv_attrs(obj):
+
+
+License
+=======
+
+- MIT
+
 
