@@ -316,3 +316,108 @@ import ebojtool
 .. image:: ./images/get_own_builtin_attrs.svg
 
 
+7. get_inherited_visible_attrs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    ::
+
+
+                >>> class tst():
+                ...     def __init__(self):
+                ...         self._u = "_u"
+                ...         self.u = "u"
+                ...
+                >>> t = tst()
+                >>>
+                >>> get_inherited_visible_attrs(t,1)
+                []
+                >>>
+
+
+.. image:: ./images/get_inherited_visible_attrs.svg
+
+8. get_inherited_priv_attrs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    ::
+
+
+                >>> class tst():
+                ...     def __init__(self):
+                ...         self._u = "_u"
+                ...         self.u = "u"
+                ...
+                >>> t = tst()
+                >>>
+                >>> get_inherited_priv_attrs(t,1)
+                []
+                >>>
+
+
+.. image:: ./images/get_inherited_priv_attrs.svg
+
+9. get_inherited_builtin_attrs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    ::
+
+
+                >>> class tst():
+                ...     def __init__(self):
+                ...         self._u = "_u"
+                ...         self.u = "u"
+                ...
+                >>> t = tst()
+                >>>
+                >>> get_inherited_buildin_attrs(t,1)
+                ['__dict__', '__module__', '__weakref__']
+                >>>
+                >>> get_inherited_builtin_attrs(t,2)
+                ['__class__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__']
+                >>>
+
+
+.. image:: ./images/get_inherited_builtin_attrs.svg
+
+10. get_all_attrs
+~~~~~~~~~~~~~~~~~
+
+    ::
+
+
+                >>> a= 5
+                >>> get_all_attrs(a)
+                ['__abs__', '__add__', '__and__', '__bool__', '__ceil__', '__class__', '__delattr__', '__dir__', '__divmod__', '__doc__', '__eq__', '__float__', '__floor__', '__floordiv__', '__format__', '__ge__', '__getattribute__', '__getnewargs__', '__gt__', '__hash__', '__index__', '__init__', '__init_subclass__', '__int__', '__invert__', '__le__', '__lshift__', '__lt__', '__mod__', '__mul__', '__ne__', '__neg__', '__new__', '__or__', '__pos__', '__pow__', '__radd__', '__rand__', '__rdivmod__', '__reduce__', '__reduce_ex__', '__repr__', '__rfloordiv__', '__rlshift__', '__rmod__', '__rmul__', '__ror__', '__round__', '__rpow__', '__rrshift__', '__rshift__', '__rsub__', '__rtruediv__', '__rxor__', '__setattr__', '__sizeof__', '__str__', '__sub__', '__subclasshook__', '__truediv__', '__trunc__', '__xor__', 'bit_length', 'conjugate', 'denominator', 'from_bytes', 'imag', 'numerator', 'real', 'to_bytes']
+
+
+.. image:: ./images/get_all_attrs.svg
+
+11. get_all_visible_attrs
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    ::
+
+
+                >>> a = 5
+                >>> get_all_visible_attrs(a)
+                ['bit_length', 'conjugate', 'denominator', 'from_bytes', 'imag', 'numerator', 'real', 'to_bytes']
+                >>>
+
+
+.. image:: ./images/get_all_visible_attrs.svg
+
+12. get_all_builtin_attrs
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    ::
+
+
+                >>> a = 5
+                >>> get_all_builtin_attrs(a)
+                ['__abs__', '__add__', '__and__', '__bool__', '__ceil__', '__class__', '__delattr__', '__dir__', '__divmod__', '__doc__', '__eq__', '__float__', '__floor__', '__floordiv__', '__format__', '__ge__', '__getattribute__', '__getnewargs__', '__gt__', '__hash__', '__index__', '__init__', '__init_subclass__', '__int__', '__invert__', '__le__', '__lshift__', '__lt__', '__mod__', '__mul__', '__ne__', '__neg__', '__new__', '__or__', '__pos__', '__pow__', '__radd__', '__rand__', '__rdivmod__', '__reduce__', '__reduce_ex__', '__repr__', '__rfloordiv__', '__rlshift__', '__rmod__', '__rmul__', '__ror__', '__round__', '__rpow__', '__rrshift__', '__rshift__', '__rsub__', '__rtruediv__', '__rxor__', '__setattr__', '__sizeof__', '__str__', '__sub__', '__subclasshook__', '__truediv__', '__trunc__', '__xor__']
+
+
+.. image:: ./images/get_all_builtin_attrs.svg
+
+
+
