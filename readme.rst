@@ -3,7 +3,7 @@
 
 
 *efuntool*
-------------
+~~~~~~~~~~~~
 
 
 
@@ -35,7 +35,7 @@ curry
 
         f = eftl.curry(sum_of_4,4)
 
-        #call at any params-combo, just keep the sequence
+        #call at any params~combo, just keep the sequence
 
         f(1,2,3,4)
         f(1,2,3)(4)
@@ -159,11 +159,8 @@ hen
         3
 
 
-EOBJTOOL
-========
-
 import
-------
+~~~~~~
 
     ::
 
@@ -173,7 +170,7 @@ import
 
 
 0. get_mros
------------
+~~~~~~~~~~~
 
     ::
 
@@ -187,7 +184,7 @@ import
 .. image:: ./images/get_mros.svg
 
 1. get_attrs_chain
-------------------
+~~~~~~~~~~~~~~~~~~
 
     ::
 
@@ -209,7 +206,7 @@ import
 .. image:: ./images/get_attrs_chain.svg
 
 2. get_own_attrs
-----------------
+~~~~~~~~~~~~~~~~
 
     ::
 
@@ -229,7 +226,7 @@ import
 .. image:: ./images/get_own_attrs.svg
 
 3. get_inherited_attrs
-----------------------
+~~~~~~~~~~~~~~~~~~~~~~
 
     ::
 
@@ -258,7 +255,7 @@ import
 .. image:: ./images/get_inherited_attrs.svg
 
 4. get_own_visible_attrs
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~
 
     ::
 
@@ -278,7 +275,7 @@ import
 .. image:: ./images/get_own_visible_attrs.svg
 
 5. get_own_priv_attrs
----------------------
+~~~~~~~~~~~~~~~~~~~~~
 
     ::
 
@@ -298,7 +295,7 @@ import
 .. image:: ./images/get_own_priv_attrs.svg
 
 6. get_own_builtin_attrs
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~
 
     ::
 
@@ -318,7 +315,7 @@ import
 .. image:: ./images/get_own_builtin_attrs.svg
 
 7. get_inherited_visible_attrs
-------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     ::
 
@@ -338,7 +335,7 @@ import
 .. image:: ./images/get_inherited_visible_attrs.svg
 
 8. get_inherited_priv_attrs
----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     ::
 
@@ -358,7 +355,7 @@ import
 .. image:: ./images/get_inherited_priv_attrs.svg
 
 9. get_inherited_builtin_attrs
-------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     ::
 
@@ -381,7 +378,7 @@ import
 .. image:: ./images/get_inherited_builtin_attrs.svg
 
 10. get_all_attrs
------------------
+~~~~~~~~~~~~~~~~~
 
     ::
 
@@ -394,7 +391,7 @@ import
 .. image:: ./images/get_all_attrs.svg
 
 11. get_all_visible_attrs
--------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
     ::
 
@@ -408,7 +405,7 @@ import
 .. image:: ./images/get_all_visible_attrs.svg
 
 12. get_all_builtin_attrs
--------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
     ::
 
@@ -421,7 +418,7 @@ import
 .. image:: ./images/get_all_builtin_attrs.svg
 
 13. get_all_priv_attrs
-----------------------
+~~~~~~~~~~~~~~~~~~~~~~
 
     ::
 
@@ -467,12 +464,7 @@ APIS
 - def hen():
 - def duck():
 - def cygnus():
-
-
-
-EOBJTOOL APIS
-=============
-
+- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 - def get_mros(obj):
 - def get_attrs_chain(obj):
 - def get_own_attrs(obj):
