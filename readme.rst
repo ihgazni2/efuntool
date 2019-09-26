@@ -158,3 +158,71 @@ hen
         >>> egg.b
         3
 
+
+import
+~~~~~~
+
+    ::
+
+        import efuntool.eobjtool as eotl
+        from efuntool.eobjtool import *
+
+
+
+0. get_mros
+~~~~~~~~~~~
+
+    ::
+
+
+                >>> a= 5
+                >>> get_mros(a)
+                [5,<class 'int'>, <class 'object'>]
+                >>>
+
+
+.. image:: ./images/get_mros.svg
+
+1. get_attrs_chain
+~~~~~~~~~~~~~~~~~~
+
+    ::
+
+
+                >>> class tst():
+                ...     def __init__(self):
+                ...         self._u = "_u"
+                ...         self.u = "u"
+                ...
+                >>> t = tst()
+                >>>
+                >>> parr(get_attrs_chain(t))
+                ['_u', 'u']
+                ['__dict__', '__module__', '__weakref__']
+                ['__class__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__']
+                >>>
+
+
+.. image:: ./images/get_attrs_chain.svg
+
+2. get_own_attrs
+~~~~~~~~~~~~~~~~
+
+    ::
+
+
+                >>> class tst():
+                ...     def __init__(self):
+                ...         self._u = "_u"
+                ...         self.u = "u"
+                ...
+                >>> t = tst()
+                >>>
+                >>> get_own_attrs(t)
+                ['_u', 'u']
+                >>>
+
+
+.. image:: ./images/get_own_attrs.svg
+
+
