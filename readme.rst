@@ -169,6 +169,19 @@ dflt_kwargs
     
 
 
+optional_arg(dflt,*args)
+~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    ::
+        
+    
+        arg = optional_arg(100)
+        arg
+        >>>100
+        arg = optional_arg(100,250)
+        arg
+        >>>250
+
 
 
 kwargs_to_property_in_cls_init
@@ -234,6 +247,18 @@ compatibize_apply_or_call_args
         [1]
         >>>
 
+
+ternaryop
+~~~~~~~~~
+    
+    ::
+
+    
+        >>> ternaryop(3>2,"ye!","no")
+        'ye!'
+        >>> ternaryop(3<2,"ye!","no")
+        'no'
+        >>>
 
 
 
@@ -558,7 +583,8 @@ APIS
 - def get_all_visible_attrs(obj):
 - def get_all_builtin_attrs(obj):
 - def get_all_priv_attrs(obj):
-
+- def optinal_arg(dflt,*args):
+- def ternaryop(cond,if_tru_rslt,if_fls_rslt):
 
 License
 =======

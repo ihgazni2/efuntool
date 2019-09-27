@@ -306,6 +306,19 @@ def compatibize_apply_or_call_args(*args,**kwargs):
             pass
     return(args)
 
+
+def optional_arg(dflt,*args):
+    '''
+        arg = optional_arg(100)
+        arg
+        >>>100
+        arg = optional_arg(100,250)
+        arg
+        >>>250
+    '''
+    arg = dflt if(len(args)==0) else args[0]
+    return(arg)
+
 #################################
 
 def pipeline(funcs):
@@ -327,6 +340,17 @@ def params_pipeline(f,orig,*args):
 
 ####
 
+
+def ternaryop(cond,if_tru_rslt,if_fls_rslt):
+    '''
+        >>> ternaryop(3>2,"ye!","no")
+        'ye!'
+        >>> ternaryop(3<2,"ye!","no")
+        'no'
+        >>>
+    '''
+    rslt = if_tru_rslt if(cond) else if_fls_rslt
+    return(rslt)
 
 def bool_op(op,cond1,cond2):
     op = op.lower()
