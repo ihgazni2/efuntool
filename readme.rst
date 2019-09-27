@@ -159,6 +159,85 @@ hen
         3
 
 
+dflt_kwargs
+~~~~~~~~~~~
+    
+    ::
+        
+    
+       counts = dflt_kwargs("counts",100,**kwargs)
+    
+
+
+
+
+kwargs_to_property_in_cls_init
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    ::
+        
+    
+        >>> class tst():
+        ...     def __init__(self,**kwargs):
+        ...         eftl.self_kwargs(self,['name','age'],['stu','20'],**kwargs)
+        ...
+        >>> p = tst()
+        >>> p.name
+        'stu'
+        >>> p.age
+        '20'
+        >>> p = tst(name='terry')
+        >>> p.name
+        'terry'
+        >>> p.age
+        '20'
+        >>>
+    
+
+
+dictize_args
+~~~~~~~~~~~~
+    
+    ::
+        
+    
+        dictize args
+        dictize_args(kl,dfltl,*args)
+
+        kl = ['k1','k2','k3','k4']
+        dfltl = [3,4]
+        dictize_args(kl,dfltl,'a','b')
+        {
+            'k1':'a',
+            'k2':'b',
+            'k3':3,
+            'k4':4
+        }
+    
+
+
+
+compatibize_apply_or_call_args
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    ::
+        
+        >>> eftl.compatibize_apply_or_call_args(1,2,3)
+        [1, 2, 3]
+        >>>
+        >>> eftl.compatibize_apply_or_call_args([1,2,3])
+        [1, 2, 3]
+        >>>
+        >>> eftl.compatibize_apply_or_call_args([1])
+        [1]
+        >>> eftl.compatibize_apply_or_call_args(1)
+        [1]
+        >>>
+
+
+
+
+
 import ebojtool
 ~~~~~~~~~~~~~~~~
 
