@@ -160,7 +160,7 @@ _FUNCS = {
 
 def get_type(obj):
     for k in _FUNCS:
-        f = _FUNCS(k)
+        f = _FUNCS[k]
         if(f(obj)):
             return(k)
         else:
