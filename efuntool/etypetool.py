@@ -140,7 +140,7 @@ def is_json(obj,strict=False):
 
 
 
-_FUNCS =
+_FUNCS = {
     "none":is_none,
     "bool":is_bool,
     "bytes":is_bytes,
