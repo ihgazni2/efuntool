@@ -1,1 +1,1 @@
-__all__=["efuntool","eobjtool","ebooltool"]
+__all__=["efuntool","eobjtool","ebooltool","etypetool"]

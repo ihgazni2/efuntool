@@ -352,6 +352,30 @@ def ternaryop(cond,if_tru_rslt,if_fls_rslt):
     rslt = if_tru_rslt if(cond) else if_fls_rslt
     return(rslt)
 
+
+def ifchain(paramd,*args):
+    '''
+        f0 = lambda ele:"condition 0"
+        f1 = lambda ele:"condition 1"
+        final = lambda ele:"else"
+        cond0 = 3<2
+        cond1 = 3>2
+        ifchain({},cond0,f0,cond1,f1,final)
+        'condition 1'
+        >>>
+    '''
+    kl = elel.select_evens(args)
+    vl = elel.select_odds(args)
+    rslt = None
+    for i in range(len(kl)):
+        cond = kl[i]
+        if(cond):
+            return(vl[i](paramd))
+        else:
+            pass
+    return(vl[-1](paramd))
+
+
 def bool_op(op,cond1,cond2):
     op = op.lower()
     if(op == "and"):

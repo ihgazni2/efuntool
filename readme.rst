@@ -546,7 +546,28 @@ import ebojtool
 
 APIS        
 ====
-
+- def is_none(obj):
+- def is_bool(obj):
+- def is_bytes(obj):
+- def is_str(obj):
+- def is_int(obj):
+- def is_float(obj):
+- def is_list(obj):
+- def is_tuple(obj):
+- def is_dict(obj):
+- def is_set(obj):
+- def is_regex(obj):
+- def is_function(obj):
+- def is_module(obj):
+- def is_customer_defined_type(obj):
+- def is_number(obj):
+- def is_recursive_type(obj):
+- def is_non_buildin_function(obj):
+- def is_buildin_function(obj):
+- def is_hashable_type(obj):
+- def is_unhashable_type(obj):
+- def is_json(obj,strict=False):
+- def get_type(obj):
 - def goose():
 - def curry(orig_func,params_count):
 - def copyornot_wrapper(func):
@@ -585,6 +606,7 @@ APIS
 - def get_all_priv_attrs(obj):
 - def optinal_arg(dflt,*args):
 - def ternaryop(cond,if_tru_rslt,if_fls_rslt):
+- def ifchain(paramd,*args)
 - def blnot(p,*args):
 - def bland(*args,**kwargs):
 - def blor(*args,**kwargs):
@@ -615,6 +637,7 @@ APIS
 - def if_p_then_false_else_notq(p,q):
 - def notp_and_notq(p,q):
 - def not_porq(p,q):
+
 
 License
 =======
