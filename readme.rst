@@ -585,6 +585,36 @@ APIS
 - def get_all_priv_attrs(obj):
 - def optinal_arg(dflt,*args):
 - def ternaryop(cond,if_tru_rslt,if_fls_rslt):
+- def blnot(p,*args):
+- def bland(*args,**kwargs):
+- def blor(*args,**kwargs):
+- def scond(p,q):
+- def dcond(p,q):
+- def blxor(p,q):
+- def product(l,repeat=2):
+- def permutate(l,repeat=2):
+- def permutate_all(l,*args):
+- def combinate(l,repeat=2):
+- def combinate_all(l,*args):
+- def creat_tru_fls_mat(cnl,*args):
+- def creat_tru_fls_dtb(cnl,*args):
+- def if_p_then_q_else_true(p,q):
+- def notp_or_q(p,q):
+- def parrowq(p,q):
+- def if_p_then_q_else_notq(p,q):
+- def notporq_and_pornotq(p,q):
+- def if_p_then_notq_else_q(p,q):
+- def pandnotq_or_notpandq(p,q):
+- def not_dcond(p,q):
+- def if_p_then_notq_else_false(p,q):
+- def p_and_notq(p,q):
+- def not_scond(p,q):
+- def if_p_the_notq_else_true(p,q):
+- def notp_or_notq(p,q):
+- def not_pandq(p,q):
+- def if_p_then_false_else_notq(p,q):
+- def notp_and_notq(p,q):
+- def not_porq(p,q):
 
 License
 =======
