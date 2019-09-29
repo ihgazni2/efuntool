@@ -406,3 +406,14 @@ def bool_funcs_ops(funcs,ops):
         return(cond)
     p = functools.partial(_rslt,funcs,ops)
     return(p)
+
+
+####
+
+def not_wrapper(func):
+    @functools.wraps(func)
+    def wrapper(*args,**kwargs):
+        return(not(func(*args,**kwargs)))
+    return(wrapper)
+
+

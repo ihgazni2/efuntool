@@ -208,7 +208,7 @@ def not_scond(p,q):
 
 ####################################
 
-def if_p_the_notq_else_true(p,q):
+def if_p_then_notq_else_true(p,q):
     '''
         与-非 not(and(p,q))
         notp_or_notq

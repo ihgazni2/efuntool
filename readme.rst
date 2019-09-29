@@ -570,6 +570,7 @@ APIS
 - def get_type(obj):
 - def goose():
 - def curry(orig_func,params_count):
+- def not_wrapper(func):
 - def copyornot_wrapper(func):
 - def force_deepcopy_wrapper(func):
 - def deepcopy_and_keep_ptr_wrapper(func):
