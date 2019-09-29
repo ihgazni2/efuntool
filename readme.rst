@@ -608,6 +608,14 @@ APIS
 - def optinal_arg(dflt,*args):
 - def ternaryop(cond,if_tru_rslt,if_fls_rslt):
 - def ifchain(paramd,*args)
+- def ifcall(cond,f,*args):
+- def ifapply(cond,f,args):
+- def ifnt_call(cond,f,*args):
+- def ifnt_apply(cond,f,args):
+- def if_calla_else_callb(cond,fa,fb,*args):
+- def if_applya_else_applyb(cond,fa,fb,args):
+- def ifnt_calla_else_callb(cond,fa,fb,*args):
+- def ifnt_applya_else_applyb(cond,fa,fb,args):
 - def blnot(p,*args):
 - def bland(*args,**kwargs):
 - def blor(*args,**kwargs):

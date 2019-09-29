@@ -416,4 +416,42 @@ def not_wrapper(func):
         return(not(func(*args,**kwargs)))
     return(wrapper)
 
+#####
 
+def ifcall(cond,f,*args):
+    rslt = None
+    if(cond):
+        rslt = f(*args)
+    else:
+        pass
+    return(rslt)
+
+def ifapply(cond,f,args):
+    return(ifcall(cond,f,*args))
+
+def ifnt_call(cond,f,*args):
+    return(ifcall(not(cond),f,*args))
+
+def ifnt_apply(cond,f,args):
+    return(ifcall(not(cond),f,*args))
+
+def if_calla_else_callb(cond,fa,fb,*args):
+    rslt = None
+    if(cond):
+        rslt = fa(*args)
+    else:
+        rslt = fb(*args)
+    return(rslt)
+
+
+def if_applya_else_applyb(cond,fa,fb,args):
+    return(if_calla_else_callb(cond,fa,fb,*args))
+
+def ifnt_calla_else_callb(cond,fa,fb,*args):
+    return(if_calla_else_callb(not(cond),fa,fb,*args))
+
+def ifnt_applya_else_applyb(cond,fa,fb,args):
+    return(if_calla_else_callb(not(cond),fa,fb,*args))
+
+
+#####
