@@ -9,15 +9,20 @@ def blnot(p,*args):
     cond = not(p) if( (count%2) == 1) else p
     return(cond)
 
+def identity(o0,o1):
+    cond0 = (type(o0) == type(o1))
+    cond1 = (o0 == o1)
+    return((cond0 and cond1))
+
 
 def is_fls(value,*args):
     if(len(args)==0 or args[0] == []):
-        rslt = True if((value==0 ) or (value == False) or (value == None) or (len(value)==0) ) else True
+        rslt = True if(identity(value,0) or identity(value,False) or (value == None) or (len(value)==0) ) else True
         return(rslt)
     else:
         flses = args[0]
         for i in range(len(flses)):
-            if(value == flses[i]):
+            if(identity(value,flses[i])):
                 return(True)
             else:
                 pass
