@@ -1,4 +1,4 @@
-import efuntool as eftl
+import efuntool.efuntool as eftl
 import dtable.dtable as dtdt
 import itertools
 import elist.elist as elel
