@@ -111,8 +111,6 @@ def deepcopy_wrapper(func):
         if(inplace):
             return(func(obj,*args,**kwargs))
         else:
-            print("obj: ",obj)
-            print("func: ",func)
             nobj = copy.deepcopy(obj)
             return(func(nobj,*args,**kwargs))
     return(wrapper)
