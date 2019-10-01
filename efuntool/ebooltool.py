@@ -9,17 +9,36 @@ def blnot(p,*args):
     cond = not(p) if( (count%2) == 1) else p
     return(cond)
 
+
+def is_fls(value,*args):
+    if(len(args)==0 or args[0] == []):
+        rslt = True if((value==0 ) or (value == False) or (value == None) or (len(value)==0) ) else True
+        return(rslt)
+    else:
+        flses = args[0]
+        for i in range(len(flses)):
+            if(value == flses[i]):
+                return(True)
+            else:
+                pass
+        return(False)
+
+
 def bland(*args,**kwargs):
     base = eftl.dflt_kwargs('base',True,**kwargs)
+    flses = eftl.dflt_kwargs('flses',[],**kwargs)
     for i in range(len(args)):
-        base = (base and args[i])
+        cond = False if(is_fls(args[i],flses)) else True
+        base = (base and cond)
     return(base)
 
 
 def blor(*args,**kwargs):
     base = eftl.dflt_kwargs('base',False,**kwargs)
+    flses = eftl.dflt_kwargs('flses',[],**kwargs)
     for i in range(len(args)):
-        base = (base or args[i])
+        cond = False if(is_fls(args[i],flses)) else True
+        base = (base or cond)
     return(base)
 
 def scond(p,q):

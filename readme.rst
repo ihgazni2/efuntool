@@ -616,6 +616,7 @@ APIS
 - def if_applya_else_applyb(cond,fa,fb,args):
 - def ifnt_calla_else_callb(cond,fa,fb,*args):
 - def ifnt_applya_else_applyb(cond,fa,fb,args):
+- def is_fls(value,*args):
 - def blnot(p,*args):
 - def bland(*args,**kwargs):
 - def blor(*args,**kwargs):
