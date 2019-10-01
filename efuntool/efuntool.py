@@ -107,13 +107,12 @@ def deepcopy_wrapper(func):
     '''
     @functools.wraps(func)
     def wrapper(obj,*args,**kwargs):
-        print(kwargs)
         inplace = dflt_kwargs('inplace',False,**kwargs)
-        print(inplace)
         if(inplace):
             return(func(obj,*args,**kwargs))
         else:
-            print("here")
+            print("obj: ",obj)
+            print("func: ",func)
             nobj = copy.deepcopy(obj)
             return(func(nobj,*args,**kwargs))
     return(wrapper)
