@@ -10,14 +10,14 @@ def blnot(p,*args):
     return(cond)
 
 def bland(*args,**kwargs):
-    base = eftl.dflt_kwargs('base',False,**kwargs)
+    base = eftl.dflt_kwargs('base',True,**kwargs)
     for i in range(len(args)):
         base = (base and args[i])
     return(base)
 
 
 def blor(*args,**kwargs):
-    base = eftl.dflt_kwargs('base',True,**kwargs)
+    base = eftl.dflt_kwargs('base',False,**kwargs)
     for i in range(len(args)):
         base = (base or args[i])
     return(base)
