@@ -620,6 +620,8 @@ APIS
 - def blnot(p,*args):
 - def bland(*args,**kwargs):
 - def blor(*args,**kwargs):
+- def bland_rtrn_last(*args,**kwargs):
+- def blor_rtrn_first(*args,**kwargs):
 - def scond(p,q):
 - def dcond(p,q):
 - def blxor(p,q):

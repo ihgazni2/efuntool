@@ -41,6 +41,36 @@ def blor(*args,**kwargs):
         base = (base or cond)
     return(base)
 
+
+def bland_rtrn_last(*args,**kwargs):
+    base = eftl.dflt_kwargs('base',True,**kwargs)
+    flses = eftl.dflt_kwargs('flses',[],**kwargs)
+    for i in range(len(args)):
+        cond = False if(is_fls(args[i],flses)) else True
+        if(cond):
+            base = args[i]
+        else:
+            return(False)
+    return(base)
+
+
+def blor_rtrn_first(*args,**kwargs):
+    base = eftl.dflt_kwargs('base',False,**kwargs)
+    flses = eftl.dflt_kwargs('flses',[],**kwargs)
+    for i in range(len(args)):
+        cond = False if(is_fls(args[i],flses)) else True
+        if(cond):
+            base = args[i]
+            break
+        else:
+            pass
+    return(base)
+
+
+
+
+
+
 def scond(p,q):
     return(not(p) or q)
 
