@@ -97,7 +97,7 @@ def is_other_type(obj):
 def parse_other(obj):
     regex = re.compile("<class '(.*)'>")
     t = type(obj)
-    m = regex.search(t.__str__())
+    m = regex.search(str(t))
     rslt = m if(m==None) else m.groups(1)
     return(rslt)
 
