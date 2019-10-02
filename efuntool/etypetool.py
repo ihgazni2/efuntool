@@ -98,7 +98,7 @@ def parse_other(obj):
     regex = re.compile("<class '(.*)'>")
     t = type(obj)
     m = regex.search(str(t))
-    rslt = m if(m==None) else m.groups(1)
+    rslt = m if(m==None) else m.group(1)
     return(rslt)
 
 
