@@ -17,6 +17,7 @@ def identity(o0,o1):
 
 def is_fls(value,*args):
     if(len(args)==0 or args[0] == []):
+        print(value)
         rslt = True if(identity(value,0) or identity(value,False) or (value == None) or (len(value)==0) ) else True
         return(rslt)
     else:
