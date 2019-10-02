@@ -14,11 +14,19 @@ def identity(o0,o1):
     cond1 = (o0 == o1)
     return((cond0 and cond1))
 
+def is_zero_len(value):
+    try:
+        rslt = (len(value)==0)
+    except:
+        return(False)
+    else:
+        return(rslt)
+
 
 def is_fls(value,*args):
     if(len(args)==0 or args[0] == []):
         print(value)
-        rslt = True if(identity(value,0) or identity(value,False) or (value == None) or (len(value)==0) ) else True
+        rslt = True if(identity(value,0) or identity(value,False) or (value == None) or is_zero_len(value) ) else True
         return(rslt)
     else:
         flses = args[0]
