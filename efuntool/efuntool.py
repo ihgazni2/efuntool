@@ -199,6 +199,8 @@ def dflt_kwargs(k,dflt,**kwargs):
     return(v)
 
 
+
+
 def self_kwargs(self,kl,dfltl,**kwargs):
     '''
         in class  __init__
@@ -318,6 +320,13 @@ def optional_arg(dflt,*args):
     '''
     arg = dflt if(len(args)==0) else args[0]
     return(arg)
+
+def optional_which_arg(dflt,*args):
+    which = dflt if(len(args)==0) else args[0]
+    return(which)
+
+
+
 
 #################################
 

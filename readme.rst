@@ -606,6 +606,7 @@ APIS
 - def get_all_builtin_attrs(obj):
 - def get_all_priv_attrs(obj):
 - def optinal_arg(dflt,*args):
+- def optional_which_arg(dflt,*args):
 - def ternaryop(cond,if_tru_rslt,if_fls_rslt):
 - def ifchain(paramd,*args)
 - def ifcall(cond,f,*args):
