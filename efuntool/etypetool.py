@@ -1,3 +1,5 @@
+import re
+
 def is_none(obj):
     if(type(obj)==type(None)):
         return(True)
