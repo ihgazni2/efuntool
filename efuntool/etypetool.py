@@ -79,6 +79,12 @@ def is_module(obj):
     else:
         return(False)
 
+def is_type(obj):
+    if(type(obj)==type(type)):
+        return(True)
+    else:
+        return(False)
+
 
 def is_customer_defined_type(obj):
     if(is_recursive_type(obj)|is_str(obj)|is_bool(obj)|is_none(obj)|is_number(obj)|is_function(obj)|is_type(obj)|is_module(obj)):
