@@ -25,7 +25,7 @@ def is_zero_len(value):
 
 def is_fls(value,*args):
     if(len(args)==0 or args[0] == []):
-        rslt = True if(identity(value,0) or identity(value,False) or (value == None) or is_zero_len(value) ) else True
+        rslt = True if(identity(value,0) or identity(value,False) or (value == None) or is_zero_len(value) ) else False
         return(rslt)
     else:
         flses = args[0]
