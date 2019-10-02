@@ -1,5 +1,7 @@
 import re
 import os
+from efuntool.efuntool import dflt_kwargs
+
 
 def is_none(obj):
     if(type(obj)==type(None)):
@@ -86,11 +88,18 @@ def is_type(obj):
         return(False)
 
 
-def is_customer_defined_type(obj):
+def is_other_type(obj):
     if(is_recursive_type(obj)|is_str(obj)|is_bool(obj)|is_none(obj)|is_number(obj)|is_function(obj)|is_type(obj)|is_module(obj)):
         return(False)
     else:
         return(True)
+
+def parse_other(obj):
+    regex = re.compile("<class '(.*)'>")
+    t = type(obj)
+    m = regex.search(t)
+    rslt = m if(m==None) else m.groups(1)
+    return(rslt)
 
 
 def is_number(obj):
@@ -162,16 +171,21 @@ _FUNCS = {
     "set":is_set,
     "regex":is_regex,
     "function":is_function,
+    "type":is_type,
     "module":is_module,
-    "customer_defined_type":is_customer_defined_type
 }
 
 
-def get_type(obj):
+def get_type(obj,**kwargs):
+    enable_parse_other = dflt_kwargs("parse_other",True,**kwargs)
     for k in _FUNCS:
         f = _FUNCS[k]
         if(f(obj)):
             return(k)
         else:
             pass
-    return(None)
+    if(enable_parse_other):
+        return(parse_other(obj))
+    else:
+        return('other')
+
