@@ -1,7 +1,7 @@
 import re
 import os
 from efuntool.efuntool import dflt_kwargs
-
+from efuntool.ebooltool import blor
 
 def is_none(obj):
     if(type(obj)==type(None)):
@@ -155,7 +155,32 @@ def is_json(obj,strict=False):
     else:
         return(True)
 
-
+def is_strize_free_jobj_leaf(obj):
+    '''
+         str(obj) could be parsed by ast, without strize
+        >>> ast.parse(str(type))
+        Traceback (most recent call last):
+          File "<stdin>", line 1, in <module>
+          File "/usr/lib/python3.6/ast.py", line 35, in parse
+            return compile(source, filename, mode, PyCF_ONLY_AST)
+          File "<unknown>", line 1
+            <class 'type'>
+            ^
+        SyntaxError: invalid syntax
+        >>>
+        >>> ast.parse(str(False))
+        <_ast.Module object at 0x7f976ac2acf8>
+        >>>
+    '''
+    rslt = blor(
+        is_none(obj),
+        is_bool(obj),
+        is_bytes(obj),
+        is_str(obj),
+        is_number(obj),
+        is_regex(obj)
+    )
+    return(rslt)
 
 
 _FUNCS = {
