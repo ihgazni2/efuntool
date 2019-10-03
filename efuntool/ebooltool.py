@@ -80,10 +80,6 @@ def blor_rtrn_first(*args,**kwargs):
     return(base)
 
 
-
-
-
-
 def scond(p,q):
     return(not(p) or q)
 
@@ -99,24 +95,26 @@ def blxor(p,q):
 #ifnt           ifnot
 
 
-def product(l,repeat=2):
+def product(l,repeat=2,**kwargs):
+    st = eftl.dflt_kwargs("sort",False,**kwargs) 
     rslt = itertools.product(l,repeat=repeat)
     rslt = list(rslt)
     rslt = elel.mapv(rslt,list,[])
-    rslt = elel.mapv(rslt,sorted,[])
+    rslt = elel.mapv(rslt,sorted,[]) if(st) else rslt
     return(rslt)
 
 
 
 
-def permutate(l,repeat=2):
+def permutate(l,repeat=2,**kwargs):
+    st = eftl.dflt_kwargs("sort",False,**kwargs)
     rslt = [each for each in itertools.permutations(l,repeat)]
     rslt = list(rslt)
     rslt = elel.mapv(rslt,list,[])
-    rslt = elel.mapv(rslt,sorted,[])
+    rslt = elel.mapv(rslt,sorted,[]) if(st) else rslt
     return(rslt)
 
-def permutate_all(l,*args):
+def permutate_all(l,*args,**kwargs):
     '''
         >>> permutate_all(['a','b','c'])
         [[], ['a'], ['b'], ['c'], ['a', 'b'], ['a', 'c'], ['a', 'b'], ['b', 'c'], ['a', 'c'], ['b', 'c'], ['a', 'b', 'c'], ['a', 'b', 'c'], ['a', 'b', 'c'], ['a', 'b', 'c'], ['a', 'b', 'c'], ['a', 'b', 'c']]
@@ -125,20 +123,21 @@ def permutate_all(l,*args):
     lngth = (len(l)+1) if (len(args)==0) else args[0]
     rslt = []
     for i in range(lngth):
-        tmp = permutate(l,repeat=i)
+        tmp = permutate(l,repeat=i,**kwargs)
         rslt.extend(tmp)
     return(rslt)
 
 
 
-def combinate(l,repeat=2):
+def combinate(l,repeat=2,**kwargs):
+    st = eftl.dflt_kwargs("sort",False,**kwargs)
     rslt = [each for each in itertools.combinations(l,repeat)]
     rslt = list(rslt)
     rslt = elel.mapv(rslt,list,[])
-    rslt = elel.mapv(rslt,sorted,[])
+    rslt = elel.mapv(rslt,sorted,[]) if(st) else rslt
     return(rslt)
 
-def combinate_all(l,*args):
+def combinate_all(l,*args,**kwargs):
     '''
         >>> combinate_all(['a','b','c'])
         [[], ['a'], ['b'], ['c'], ['a', 'b'], ['a', 'c'], ['b', 'c'], ['a', 'b', 'c']]
@@ -147,7 +146,7 @@ def combinate_all(l,*args):
     lngth = (len(l)+1) if (len(args)==0) else args[0]
     rslt = []
     for i in range(lngth):
-        tmp = combinate(l,repeat=i)
+        tmp = combinate(l,repeat=i,**kwargs)
         rslt.extend(tmp)
     return(rslt)
 
