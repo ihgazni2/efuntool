@@ -326,6 +326,40 @@ def optional_which_arg(dflt,*args):
     return(which)
 
 
+def optional_whiches(arr,dflt,*args):
+    '''
+        #optional_whiches(arr,dflt,*args)
+        >>> optional_whiches([10,11,12,13],1)
+        11
+        >>> optional_whiches([10,11,12,13],'all')
+        [10, 11, 12, 13]
+        >>>
+        >>> optional_whiches([10,11,12,13],'all',1,3)
+        [11, 13]
+        >>>
+        >>> optional_whiches([10,11,12,13],'all',2)
+        12
+        >>>
+        >>> optional_whiches([10,11,12,13],'all','last')
+        13
+        >>> optional_whiches([10,11,12,13],'all','first')
+        10
+        >>>
+    '''
+    lngth = len(args)
+    if(lngth >= 2):
+        whiches = args
+        return(elel.select_seqs(arr,whiches))
+    else:
+        which = optional_which_arg(dflt,*args)
+        if(which == 'all'):
+            return(arr)
+        elif(which == 'last'):
+            return(arr[-1])
+        elif(which == 'first'):
+            return(arr[0])
+        else:
+            return(arr[which])
 
 
 #################################
