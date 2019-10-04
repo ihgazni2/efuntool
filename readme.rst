@@ -657,7 +657,7 @@ APIS
 BOOLFUNC
 ========
 
-`Link text <https://github.com/ihgazni2/efuntool/edit/master/readme.rst/>`_
+`BOOL-L0-FUNCS <https://github.com/ihgazni2/efuntool/blob/master/docs/bool_parser.rst>`_
 
 
 License
