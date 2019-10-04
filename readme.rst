@@ -654,11 +654,42 @@ APIS
 - def not_porq(p,q):
 
 
-BOOLFUNC
-========
+PROPOSITION
+===========
 
-`BOOL-L0-FUNCS <https://github.com/ihgazni2/efuntool/blob/master/docs/bool_parser.rst>`_
+`PROPOSITION  <https://github.com/ihgazni2/efuntool/blob/master/docs/bool_parser.rst>`_
 
+APIS
+~~~~
+- def enot(p):
+- def exist(conds):
+- def eall(conds):
+- def pandq(p,q):
+- def porq(p,q):
+- def if_p_then_notq_else_q(p,q):
+- def if_p_then_notq_else_tru(p,q):
+- def if_p_then_fls_else_notq(p,q):
+- def if_p_then_q_else_tru(p,q):
+- def if_q_then_p_else_tru(p,q):
+- def if_p_then_notq_else_fls(p,q):
+- def if_q_then_notp_else_fls(p,q):
+- def if_p_then_q_else_notq(p,q):
+- def if_p_then_q_else_fls(p,q):
+- def if_q_then_p_else_fls(p,q):
+- def if_p_then_tru_else_q(p,q):
+- def if_q_then_tru_else_p(p,q):
+- def if_notp_then_notq_else_tru(p,q):
+- def if_notq_then_notp_else_tru(p,q):
+- def if_p_then_tru_else_fls(p,q):
+- def if_q_then_tru_else_fls(p,q):
+- def if_p_then_q_else_q(p,q):
+- def if_q_then_p_else_p(p,q):
+- def if_p_then_notq_else_notq(p,q):
+- def if_q_then_notp_else_notp(p,q):
+- def if_p_then_fls_else_tru(p,q):
+- def if_q_then_fls_else_tru(p,q):
+- def if_p_then_fls_else_q(p,q):
+- def if_q_then_fls_else_p(p,q):
 
 License
 =======
