@@ -654,6 +654,12 @@ APIS
 - def not_porq(p,q):
 
 
+BOOLFUNC
+========
+
+`Link text <https://github.com/ihgazni2/efuntool/edit/master/readme.rst/>`_
+
+
 License
 =======
 
