@@ -179,8 +179,9 @@ def deepcopy_and_keep_ptr_wrapper(func):
 ################
 
 def dflt_sysargv(dflt,which):
+    import sys as currsys
     try:
-        rslt = sys.argv[which]
+        rslt = currsys.argv[which]
     except:
         rslt = dflt
     else:
