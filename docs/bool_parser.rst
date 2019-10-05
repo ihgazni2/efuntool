@@ -11,6 +11,7 @@ L0
 ==
 - :not: !p
 - :exist: ?
+- :onlyone: %
 - :all:   \*
 
 L1
