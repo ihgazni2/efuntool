@@ -11,6 +11,11 @@ def exist(conds):
     return(rslt)
 
 
+def eone(conds):
+    rslt = (conds.count == 1)
+    return(rslt)
+
+
 def eall(conds):
     rslt = True
     for cond in conds:
@@ -19,6 +24,9 @@ def eall(conds):
         else:
             return(False)
     return(rslt)
+
+
+
 
 
 def pandq(p,q):
