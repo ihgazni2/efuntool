@@ -691,6 +691,11 @@ APIS
 - def if_p_then_fls_else_q(p,q):
 - def if_q_then_fls_else_p(p,q):
 
+- def next_permutation(vl,**kwargs):
+- def prev_permutation(vl,**kwargs):
+- def get_permutation_index(vl,**kwargs):
+- def index2permutation(index,lngth,*args):
+
 License
 =======
 

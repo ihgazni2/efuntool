@@ -2,6 +2,10 @@ import efuntool.efuntool as eftl
 import dtable.dtable as dtdt
 import itertools
 import elist.elist as elel
+import edict.edict as eded
+import math
+
+
 #1-1 
 #1-2
 def blnot(p,*args):
@@ -299,7 +303,171 @@ def not_porq(p,q):
     return(not(p or q))
 
 
-
-
-
 #######################################
+
+def _get_permutation_map(arr,**kwargs):
+    arr = sorted(arr,**kwargs)
+    mp = elel.ivdict(arr)
+    return(mp)
+
+def _recover_via_permutation_map(arr,mp):
+    vl = eded.vlviakl(mp,arr)
+    return(vl)
+
+def _next_permutation(arr):
+    pair = elel.find_fst_indexpair_fstltsnd_via_reversing(arr)
+    if(pair == None):
+        return(None)
+    else:
+        j = elel.find_fst_index_gt_via_reversing(arr[pair[0]],arr)
+        arr = elel.swap(pair[0],j,arr)
+        init  = arr[:pair[1]]
+        tail  = sorted(arr[pair[1]:])
+        arr = elel.concat(init,tail)
+        return(arr)
+
+def next_permutation(vl,**kwargs):
+    mp = _get_permutation_map(vl,**kwargs)
+    kl = eded.klviavl(mp,vl)
+    kl = _next_permutation(kl)
+    vl = _recover_via_permutation_map(kl,mp)
+    return(vl)
+
+
+def _prev_permutation(arr):
+    pair = elel.find_fst_indexpair_fstgtsnd_via_reversing(arr)
+    if(pair == None):
+        return(None)
+    else:
+        j = elel.find_fst_index_lt_via_reversing(arr[pair[0]],arr)
+        arr = elel.swap(pair[0],j,arr)
+        init  = arr[:pair[1]]
+        tail  = sorted(arr[pair[1]:])
+        tail.reverse()
+        arr = elel.concat(init,tail)
+        return(arr)
+
+def prev_permutation(vl,**kwargs):
+    mp = _get_permutation_map(vl,**kwargs)
+    kl = eded.klviavl(mp,vl)
+    kl = _prev_permutation(kl)
+    vl = _recover_via_permutation_map(kl,mp)
+    return(vl)
+
+
+def _get_permutation_index(arr):
+    indexes = []
+    lngth = len(arr)
+    for i in range(lngth):
+        lefted = arr[i:lngth]
+        lefted = sorted(lefted)
+        indexes.append(lefted.index(arr[i]))
+    indexes = elel.filter(indexes,lambda index:index>0)
+    acc = 0
+    for i in range(len(indexes)):
+        acc = acc + indexes[i] * math.factorial(lngth-i-1)
+    return(acc)
+
+def get_permutation_index(vl,**kwargs):
+    '''
+        >>> _get_permutation_index(['c','d','b','a','e'])
+        62
+        >>>
+    '''
+    mp = _get_permutation_map(vl,**kwargs)
+    kl = eded.klviavl(mp,vl)
+    index = _get_permutation_index(kl)
+    return(index)
+
+def _relindex2absindex(indexes):
+    '''
+        >>> _relindex2absindex([2,2,1,1,0])
+        [2, 3, 1, 4, 0]
+        >>>
+        [2, 3, 1, 4, 0]                               [2,2,1,1,0]
+        2                           arr=[0,1,2,3,4]   2=arr[2]
+                                    arr.pop(2)
+        3                           arr=[0,1,3,4]     3=arr[2]
+                                    arr.pop(2)
+        1                           arr=[0,1,4]       1=arr[1]
+                                    arr.pop(1)
+        4                           arr=[0,4]         4=arr[1]
+                                    arr.pop(1)
+        0                           arr=[0]           0=arr[0]
+    '''
+    lngth = len(indexes)
+    arr = elel.init_range(0,lngth,1)
+    rslt = []
+    for i in range(lngth):
+        ri = indexes[i]
+        index = arr[ri]
+        ai = arr.pop(ri)
+        rslt.append(ai)
+    return(rslt)
+
+
+def index2permutation(index,lngth,*args):
+    '''
+        >>> index2permutation(62,5)
+        [2, 3, 1, 0, 4]
+        >>>
+        >>> index2permutation(62,5,['a','b','c','d','e'])
+        ['c', 'd', 'b', 'a', 'e']
+        >>>
+    '''
+    rel_indexes = []
+    n = lngth - 1
+    while(index>0):
+        q = index // math.factorial(n)
+        r = index % math.factorial(n)
+        rel_indexes.append(q)
+        n = n - 1
+        index = r
+    if(len(args)==0):
+        arr = elel.init_range(0,lngth,1)
+    else:
+        arr = args[0]
+    rel_indexes = elel.padding(rel_indexes,lngth,0)
+    abs_indexes = _relindex2absindex(rel_indexes)
+    rslt = elel.select_seqs(arr,abs_indexes)
+    return(rslt)   
+        
+
+
+class Permutaion():
+    '''
+        >>> p=Permutaion(['a','b','c','d'])
+        >>> p
+        ['a', 'b', 'c', 'd']
+        >>> p.next()
+        ['a', 'b', 'd', 'c']
+        >>> p.next()
+        ['a', 'c', 'b', 'd']
+        >>> p.prev()
+        ['a', 'b', 'd', 'c']
+        >>> p.prev()
+        ['a', 'b', 'c', 'd']
+    '''
+    def __init__(self,vl,*args,**kwargs):
+        if(isinstance(vl,list)):
+            self.seed = vl
+            self.curr = vl
+        else:
+            self.seed = index2permutation(index,lngth,*args)
+            self.curr = self.seed
+        self.kwargs = kwargs
+    def next(self):
+        self.curr = next_permutation(self.curr,**self.kwargs)
+        print(self.curr.__str__())
+        return(elel.fcp(self.curr))
+    def prev(self):
+        self.curr = prev_permutation(self.curr,**self.kwargs)
+        print(self.curr.__str__())
+        return(elel.fcp(self.curr))
+    def index(self):
+        i = get_permutation_index(self.curr,**self.kwargs)
+        return(i)
+    def __repr__(self):
+        return(self.curr.__str__())
+
+
