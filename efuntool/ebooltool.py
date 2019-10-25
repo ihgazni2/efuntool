@@ -310,9 +310,19 @@ def _get_permutation_map(arr,**kwargs):
     mp = elel.ivdict(arr)
     return(mp)
 
-def _recover_via_permutation_map(arr,mp):
-    vl = eded.vlviakl(mp,arr)
+def _recover_via_permutation_map(kl,mp):
+    vl = eded.vlviakl(mp,kl)
     return(vl)
+
+def binlist2permutation(binlist,arr,**kwargs):
+    mp = _get_permutation_map(arr,**kwargs)
+    vl = _recover_via_permutation_map(kl,mp)
+    return(vl)
+
+def permutation2binlist(permu,**kwargs):
+    mp = _get_permutation_map(permu,**kwargs)
+    kl = eded.klviavl(mp,permu)
+    return(kl)
 
 def _next_permutation(arr):
     pair = elel.find_fst_indexpair_fstltsnd_via_reversing(arr)
@@ -330,6 +340,10 @@ def next_permutation(vl,**kwargs):
     mp = _get_permutation_map(vl,**kwargs)
     kl = eded.klviavl(mp,vl)
     kl = _next_permutation(kl)
+    if(kl == None):
+        return(None)
+    else:
+        pass
     vl = _recover_via_permutation_map(kl,mp)
     return(vl)
 
@@ -351,6 +365,10 @@ def prev_permutation(vl,**kwargs):
     mp = _get_permutation_map(vl,**kwargs)
     kl = eded.klviavl(mp,vl)
     kl = _prev_permutation(kl)
+    if(kl == None):
+        return(None)
+    else:
+        pass
     vl = _recover_via_permutation_map(kl,mp)
     return(vl)
 
@@ -368,9 +386,9 @@ def _get_permutation_index(arr):
         acc = acc + indexes[i] * math.factorial(lngth-i-1)
     return(acc)
 
-def get_permutation_index(vl,**kwargs):
+def permutation2index(vl,**kwargs):
     '''
-        >>> _get_permutation_index(['c','d','b','a','e'])
+        >>> permutation2index(['c','d','b','a','e'])
         62
         >>>
     '''
@@ -453,21 +471,509 @@ class Permutaion():
             self.seed = vl
             self.curr = vl
         else:
+            index = vl
             self.seed = index2permutation(index,lngth,*args)
             self.curr = self.seed
         self.kwargs = kwargs
     def next(self):
         self.curr = next_permutation(self.curr,**self.kwargs)
-        print(self.curr.__str__())
+        #print(self.curr.__str__())
         return(elel.fcp(self.curr))
     def prev(self):
         self.curr = prev_permutation(self.curr,**self.kwargs)
-        print(self.curr.__str__())
+        #print(self.curr.__str__())
         return(elel.fcp(self.curr))
     def index(self):
-        i = get_permutation_index(self.curr,**self.kwargs)
+        i = permutation2index(self.curr,**self.kwargs)
         return(i)
     def __repr__(self):
         return(self.curr.__str__())
 
+####
+####
+def _get_combination_map(arr,**kwargs):
+    '''
+        >>> _get_combination_map(['a','b','c','d','e'])
+        {0: 'a', 1: 'b', 2: 'c', 3: 'd', 4: 'e'}
+        >>>
+    '''
+    arr = sorted(arr,**kwargs)
+    mp = elel.ivdict(arr)
+    return(mp)
 
+
+def _get_combination_num(combi,arr):
+    '''
+        >>> _get_combination_num(["c","e"],["a","b","c","d","e"])
+        20     1 0 1 0 0
+               e d c b a
+        >>>
+    '''
+    mp = _get_combination_map(arr)
+    combi = elel.mapv(combi,lambda ele:arr.index(ele))
+    num = elel.reduce_left(combi,lambda acc,ele:acc+2**ele,0)
+    return(num)
+
+
+def binlist2num(binlist,**kwargs):
+    bigend = eftl.dflt_kwargs('bigend',True,**kwargs)
+    if(bigend):
+        pass
+    else:
+        binlist = elel.fcp(binlist)
+        binlist.reverse()
+    arr = elel.mapv(binlist,str)
+    s = elel.join(arr)
+    return(int(s,2))
+
+
+def num2binlist(num,**kwargs):
+    '''
+        >>> num2binlist(2)
+        [1, 0]
+        >>> num2binlist(3)
+        [1, 1]
+        >>> num2binlist(3,size=4)
+        [0, 0, 1, 1]
+        >>>
+    '''
+    bitmap_size = eftl.dflt_kwargs('size',bin(num).__len__() - 2,**kwargs)
+    bigend = eftl.dflt_kwargs('bigend',True,**kwargs)
+    bitmaplist = []
+    s = bin(num)[2:]
+    s_len = s.__len__()
+    for i in range(0,s_len):
+        b = s[s_len-i-1]
+        bitmaplist.append(int(b))
+    for i in range(s_len,bitmap_size):
+        bitmaplist.append(0)
+    if(bigend):
+        bitmaplist.reverse()
+    else:
+        pass
+    return(bitmaplist)
+
+def combination2binlist(combi,arr):
+    '''
+        >>> combination2binlist(["c","e"],['a', 'b', 'c', 'd', 'e'])
+        [1, 0, 1, 0, 0]
+        >>>
+    '''
+    n = _get_combination_num(combi,arr)
+    lngth = len(arr)
+    binlist = num2binlist(n,bigend=True,size=lngth)
+    return(binlist)
+
+def _get_minbinlist(tl):
+    '''
+        >>> _get_minbinlist([1,0,1])
+        [0, 1, 1]
+        >>>
+    '''
+    tl_len = len(tl)
+    if(tl_len == 0):
+        return(tl)
+    else:
+        pass
+    cnt = tl.count(1)
+    tl = num2binlist(2**cnt-1,size=tl_len)
+    return(tl)
+
+def _get_maxbinlist(tl):
+    '''
+        >>> _get_maxbinlist([1,0,1])
+        [1,1,0]
+        >>>
+    '''
+    tl = _get_minbinlist(tl)
+    tl.reverse()
+    return(tl)
+
+
+def _next_combination(binlist):
+    '''
+        >>> binlist = [1, 0, 0, 1, 1]
+        >>>
+        >>> _next_combination(binlist)
+        [1, 0, 1, 0, 1]
+        >>>
+        >>> _next_combination(binlist)
+        [1, 0, 1, 1, 0]
+        >>> _next_combination(binlist)
+        [1, 1, 0, 1, 0]
+        >>> _next_combination(binlist)
+        [1, 1, 1, 0, 0]
+        >>> _next_combination(binlist)
+        >>>
+        >>> binlist = [1, 0, 1, 1, 0]
+        >>> _next_combination(binlist)
+        [1, 1, 0, 1, 0]
+        >>> _next_combination(binlist)
+        [1, 1, 1, 0, 0]
+        >>> _next_combination(binlist)
+        >>>
+    '''
+    lngth = len(binlist)
+    last = binlist[-1]
+    if(last == 1):
+        last_zero_index = elel.find_fst_index_eq_via_reversing(0,binlist)
+        if(last_zero_index == None):
+            return(None)
+        else:
+            pass
+        next_one_index = last_zero_index + 1
+        elel.swap(last_zero_index,next_one_index,binlist)
+        #
+        hl = binlist[:next_one_index+1]
+        tl = binlist[next_one_index+1:]
+        tl = _get_minbinlist(tl)
+        binlist = elel.concat(hl,tl)
+        #
+    else:
+        last_one_index = elel.find_fst_index_eq_via_reversing(1,binlist)
+        prev_zero_index = elel.find_fst_index_eq_via_reversing(0,binlist[:last_one_index])
+        if(prev_zero_index == None):
+            return(None)
+        else:
+            pass
+        prev_one_index = prev_zero_index + 1
+        elel.swap(prev_zero_index,prev_one_index,binlist)
+        #
+        hl = binlist[:prev_one_index+1]
+        tl = binlist[prev_one_index+1:]
+        tl = _get_minbinlist(tl)
+        binlist = elel.concat(hl,tl)
+        #
+    return(binlist)
+
+
+def _binlist2combination(binlist,arr):
+    '''
+        >>> _binlist2combination([1,0,1,0,0],["a","b","c","d","e"])
+        ['c', 'e']
+        >>>
+    '''
+    mp = _get_combination_map(arr)
+    rslt = []
+    lngth = len(binlist)
+    for i in range(lngth):
+        if(binlist[i] == 1):
+            rslt.append(arr[lngth-1-i])
+        else:
+            pass
+    rslt.sort()
+    return(rslt)
+
+def binlist2combination(binlist,arr):
+    return(_binlist2combination(binlist,arr))
+
+def _get_next_level_fst_binlist(combi,lngth):
+    '''
+        >>> _get_next_level_fst_binlist(["x"],5)
+        [0, 0, 0, 1, 1]
+        >>> _get_next_level_fst_binlist(["x","x"],5)
+        [0, 0, 1, 1, 1]
+        >>> _get_next_level_fst_binlist([],5)
+        [0, 0, 0, 0, 1]
+        >>> _get_next_level_fst_binlist(["x","x","x","x","x"],5)
+        >>>
+    '''
+    curr_len = len(combi)
+    if(curr_len == lngth):
+        return(None)
+    else:
+        n = 2**(curr_len + 1) - 1
+        binlist = num2binlist(n,size=lngth)
+        return(binlist)
+
+def _get_prev_level_lst_binlist(combi,lngth):
+    '''
+        >>> _get_prev_level_lst_binlist([],5)
+        >>> _get_prev_level_lst_binlist(["x"],5)
+        [0, 0, 0, 0, 0]
+        >>> _get_prev_level_lst_binlist(["x","x"],5)
+        [1, 0, 0, 0, 0]
+        >>>
+    '''
+    curr_len = len(combi)
+    if(curr_len == 0):
+        return(None)
+    else:
+        n = 2**curr_len  - 2
+        binlist = num2binlist(n,size=lngth)
+        binlist = _get_maxbinlist(binlist)
+        return(binlist)
+
+def next_combination(combi,arr):
+    '''
+        >>> next_combination(["c","e"],["a","b","c","d","e"])
+        ['d', 'e']
+        >>> next_combination(["d","e"],["a","b","c","d","e"])
+        ['a', 'b', 'c']
+        >>> next_combination(["a","b","c"],["a","b","c","d","e"])
+        ['a', 'b', 'd']
+        >>>
+        >>> next_combination(["a","b","c","d"],["a","b","c","d","e"])
+        ['a', 'b', 'c', 'e']
+        >>> next_combination(["a","b","c","d","e"],["a","b","c","d","e"])
+        >>>
+    '''
+    if(len(combi) == 0):
+         mp = _get_combination_map(arr)
+         return([mp[0]])
+    else:
+        pass
+    lngth = len(arr)
+    binlist = combination2binlist(combi,arr)
+    binlist = _next_combination(binlist)
+    if(binlist == None):
+        binlist = _get_next_level_fst_binlist(combi,lngth)
+        if(binlist == None):
+            return(None)
+        else:
+            pass
+    else:
+        pass
+    rslt = _binlist2combination(binlist,arr)
+    return(rslt)
+
+
+
+def _prev_combination(binlist):
+    '''
+        >>> _prev_combination([1,1,1,1,1])
+        >>> _prev_combination([1,1,1,0,1])
+        [1, 1, 0, 1, 1]
+        >>> _prev_combination([1,1,0,1,1])
+        [1, 0, 1, 1, 1]
+        >>>
+        >>> _prev_combination([1,0,1,1,1])
+        [0, 1, 1, 1, 1]
+        >>> _prev_combination([0,1,1,1,1])
+        >>>
+        >>>
+        >>> _prev_combination([1, 0, 1, 1, 0])
+        [1, 0, 1, 0, 1]
+        >>>
+        >>> _prev_combination([1, 0, 1,0,1])
+        [1, 0, 0, 1, 1]
+        >>>
+        >>> _prev_combination([1, 0, 0,1,1])
+        [0, 1, 0, 1, 1]
+        >>> _prev_combination([0,1,0,1,1])
+        [0, 0, 1, 1, 1]
+        >>> _prev_combination([0,0,1,1,1])
+        >>>
+    '''
+    lngth = len(binlist)
+    last = binlist[-1]
+    if(last == 1):
+        '''
+            [1,0,0,1,1]
+               ^-------------------find this 0
+            [0,1,0,1,1]
+             ^ ^ ------------------swap with 1 after this 0
+            [1,0,1,0,1]
+                   ^-------------------find this 0
+            [0,1,1,0,1]
+                 ^ ^ ------------------swap with 1 after this 0             
+            [1,1,1,1,1]  --------None
+            [0,0,1,1,1]  --------None     0...0  1...1  
+        '''
+        #从后往前找,find last zero
+        last_zero_index = elel.find_fst_index_eq_via_reversing(0,binlist)
+        if(last_zero_index == None):
+            return(None)
+        else:
+            pass
+        #从last-zero开始,从后往前找, 找到第一个1
+        prev_one_index = elel.find_fst_index_eq_via_reversing(1,binlist[:last_zero_index])
+        if(prev_one_index == None):
+            return(None)
+        else:
+            pass
+        #这个1后面(从前往后)肯定是0，记录这个0
+        prev_zero_index = prev_one_index +1
+        elel.swap(prev_zero_index,prev_one_index,binlist)
+        #
+        hl = binlist[:prev_zero_index+1]
+        tl = binlist[prev_zero_index+1:]
+        tl = _get_maxbinlist(tl)
+        binlist = elel.concat(hl,tl)
+        #
+    else:
+        '''
+            [1,0,1,1,0]
+                   ^----------------------find this 1
+            [1,0,1,1,0]
+                   ^ ^ --------------------swap with 1 before this 0
+            [0,0,0,0,0]-----------------None
+        '''
+        last_one_index = elel.find_fst_index_eq_via_reversing(1,binlist)
+        if(last_one_index == None):
+            return(None)
+        else:
+            pass
+        next_zero_index = last_one_index + 1
+        elel.swap(next_zero_index,last_one_index,binlist)
+        #
+        hl = binlist[:next_zero_index+1]
+        tl = binlist[next_zero_index+1:]
+        tl = _get_maxbinlist(tl)
+        binlist = elel.concat(hl,tl)
+        #
+    return(binlist)
+
+def prev_combination(combi,arr):
+    '''
+        >>> prev_combination(["a","c"],["a","b","c","d","e"])
+        ['a', 'b']
+        >>> prev_combination(["a","b"],["a","b","c","d","e"])
+        ['a']
+        >>> prev_combination(["a"],["a","b","c","d","e"])
+        []
+        >>> prev_combination([],["a","b","c","d","e"])
+        >>>
+        >>> prev_combination(["a","b","c","d"],["a","b","c","d","e"])
+        ['a', 'b', 'c']
+        >>> prev_combination(["a","b","c","e"],["a","b","c","d","e"])
+        ['a', 'b', 'c', 'd']
+        >>>
+        >>> prev_combination(["a","b","c","d","e"],["a","b","c","d","e"])
+        ['b', 'c', 'd', 'e']
+        >>>
+    '''
+    lngth = len(arr)
+    binlist = combination2binlist(combi,arr)
+    binlist = _prev_combination(binlist)
+    if(binlist == None):
+        binlist = _get_prev_level_lst_binlist(combi,lngth)
+        if(binlist == None):
+            return(None)
+        else:
+            pass
+    else:
+        pass
+    rslt = _binlist2combination(binlist,arr)
+    return(rslt)
+
+def get_combination_count(k,n):
+    nf = math.factorial(n)
+    kf = math.factorial(k)
+    nsubkf = math.factorial(n-k)
+    rslt = nf // kf
+    rslt = rslt // nsubkf
+    return(rslt)
+
+def _get_combination_brkpoints(n):
+    sizes = [get_combination_count(k,n) for k in range(n+1)]
+    brks = elel.interval_sizes2brks(sizes)
+    return(brks)
+
+def get_combination_interval(n):
+    '''
+        >>> get_combination_interval(4)
+        [(0, 1), (1, 5), (5, 11), (11, 15), (15, 16)]
+        >>>
+    '''
+    brks = _get_combination_brkpoints(n)
+    rngzs = elel.rangize(brks,2**n)
+    return(rngzs)
+
+def _combination2index(binlist):
+    next = _get_minbinlist(binlist)
+    c = 0
+    while(next!=binlist):
+        next = _next_combination(next)
+        c = c + 1
+    return(c)
+
+def combination2index(combi,arr):
+    '''
+        >>> arr
+        ['a', 'b', 'c', 'd', 'e']
+        >>>
+        >>> combination2index([],arr)
+        0
+        >>> combination2index(['a'],arr)
+        1
+        >>> combination2index(['b'],arr)
+        2
+        >>> combination2index(['c'],arr)
+        3
+        >>>
+        >>> combination2index(['a','c'],arr)
+        7
+        >>> combination2index(arr,arr)
+        31
+        >>> combination2index(['b','c','d','e'],arr)
+        30
+        >>>
+    '''
+    lngth = len(arr)
+    intervals = get_combination_interval(lngth)
+    combi_len = len(combi)
+    interval = intervals[combi_len]
+    binlist = combination2binlist(combi,arr)
+    rel_index = _combination2index(binlist)
+    index = interval[0] + rel_index
+    return(index)
+
+def index2combination(index,arr):
+    if(index ==0):
+        return([])
+    else:
+        lngth = len(arr)
+        intervals = get_combination_interval(lngth)
+        which = elel.which_interval_index(index,intervals)
+        binlist = num2binlist(2**which-1,size=lngth)
+        base = intervals[which][0]
+        offset = index - base
+        for i in range(offset):
+            binlist = _next_combination(binlist)
+        combi = binlist2combination(binlist,arr)
+        return(combi)
+
+class Combination():
+    '''
+        >>> c = Combination(['a','b'],['a', 'b', 'c', 'd', 'e'])
+        >>>
+        >>> c
+        ['a', 'b']
+        >>>
+        >>> c.next()
+        ['a', 'c']
+        >>> c
+        ['a', 'c']
+        >>> c.prev()
+        ['a', 'b']
+        >>> c
+        ['a', 'b']
+        >>> c.index()
+        6
+        >>> c = Combination(6,['a', 'b', 'c', 'd', 'e'])
+        >>> c
+        ['a', 'b']
+        >>>
+    '''
+    def __init__(self,vl,arr,**kwargs):
+        self.full = arr 
+        if(isinstance(vl,list)):
+            self.seed = vl
+            self.curr = vl
+        else:
+            index = vl
+            self.seed = index2combination(index,arr)
+            self.curr = self.seed
+        self.kwargs = kwargs
+    def next(self):
+        self.curr = next_combination(self.curr,arr,**self.kwargs)
+        return(elel.fcp(self.curr))
+    def prev(self):
+        self.curr = prev_combination(self.curr,arr,**self.kwargs)
+        return(elel.fcp(self.curr))
+    def index(self):
+        i = combination2index(self.curr,arr,**self.kwargs)
+        return(i)
+    def __repr__(self):
+        return(self.curr.__str__())
