@@ -737,6 +737,22 @@ APIS
         >>> arr
         ['a', 'b', 'c', 'd', 'e']
         >>>
+        >>> from efuntool.ebooltool import Permutation,Combination
+        >>> arr = ['a', 'b', 'c', 'd', 'e']
+        >>> c = Combination(['a','b'],arr)
+        >>> c
+        ['a', 'b']
+        >>> c.next()
+        ['a', 'c']
+        >>> c
+        ['a', 'c']
+        >>> c.prev()
+        ['a', 'b']
+        >>> c
+        ['a', 'b']
+        >>> c.index()
+        6
+        >>>
 
 
 License
