@@ -714,11 +714,29 @@ APIS
     
     ::
         
+        from efuntool.ebooltool import Permutation,Combination
+        >>> p=Permutation(['a','b','c','d'])
+        >>> p
+        ['a', 'b', 'c', 'd']
+        >>> p.next()
+        ['a', 'b', 'd', 'c']
+        >>> p.next()
+        ['a', 'c', 'b', 'd']
+        >>> p.prev()
+        ['a', 'b', 'd', 'c']
+        >>> p.prev()
+        ['a', 'b', 'c', 'd']
+        >>> p.index()
+        0
+        >>>
 
 - class Combination
     
     ::
         
+        >>> arr
+        ['a', 'b', 'c', 'd', 'e']
+        >>>
 
 
 License

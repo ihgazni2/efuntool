@@ -967,13 +967,13 @@ class Combination():
             self.curr = self.seed
         self.kwargs = kwargs
     def next(self):
-        self.curr = next_combination(self.curr,arr,**self.kwargs)
+        self.curr = next_combination(self.curr,self.full,**self.kwargs)
         return(elel.fcp(self.curr))
     def prev(self):
-        self.curr = prev_combination(self.curr,arr,**self.kwargs)
+        self.curr = prev_combination(self.curr,self.full,**self.kwargs)
         return(elel.fcp(self.curr))
     def index(self):
-        i = combination2index(self.curr,arr,**self.kwargs)
+        i = combination2index(self.curr,self.full,**self.kwargs)
         return(i)
     def __repr__(self):
         return(self.curr.__str__())
