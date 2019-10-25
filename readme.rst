@@ -691,10 +691,35 @@ APIS
 - def if_p_then_fls_else_q(p,q):
 - def if_q_then_fls_else_p(p,q):
 
-- def next_permutation(vl,**kwargs):
-- def prev_permutation(vl,**kwargs):
-- def get_permutation_index(vl,**kwargs):
-- def index2permutation(index,lngth,*args):
+
+
+- def binlist2permutation(binlist,arr,\*\*kwargs):
+- def permutation2binlist(permu,\*\*kwargs):
+- def next_permutation(vl,\*\*kwargs):
+- def prev_permutation(vl,\*\*kwargs):
+- def permutation2index(vl,\*\*kwargs):
+- def index2permutation(index,lngth,\*args):
+- def num2binlist(num,\*\*kwargs):
+- def binlist2num(binlist,\*\*kwargs):
+- def combination2binlist(combi,arr):
+- def binlist2combination(binlist,arr):
+- def next_combination(combi,arr):
+- def prev_combination(combi,arr):
+- def get_combination_count(k,n):
+- def get_combination_interval(n):
+- def combination2index(combi,arr):
+- def index2combination(index,arr):
+
+- class Permutation
+    
+    ::
+        
+
+- class Combination
+    
+    ::
+        
+
 
 License
 =======

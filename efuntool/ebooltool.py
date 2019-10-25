@@ -452,9 +452,9 @@ def index2permutation(index,lngth,*args):
         
 
 
-class Permutaion():
+class Permutation():
     '''
-        >>> p=Permutaion(['a','b','c','d'])
+        >>> p=Permutation(['a','b','c','d'])
         >>> p
         ['a', 'b', 'c', 'd']
         >>> p.next()
