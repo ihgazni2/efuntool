@@ -499,3 +499,32 @@ def ifnt_applya_else_applyb(cond,fa,fb,args):
 
 
 #####
+
+def de_args_kwargs(kl,dflt_vl,*args,**kwargs):
+    d = {}
+    lngth = len(args)
+    for i in range(len(kl)):
+        k = kl[i]
+        if(k in kwargs):
+            d[k] = kwargs[k]
+        elif(i<lngth):
+            d[k] = args[i]
+        else:
+            d[k] = dflt_vl[i]
+    return(d)
+
+
+def self_args_kwargs(self,kl,dflt_vl,*args,**kwargs):
+    lngth = len(args)
+    for i in range(len(kl)):
+        k = kl[i]
+        if(k in kwargs):
+            self.__setattr__(k,kwargs[k])
+        elif(i<lngth):
+            self.__setattr__(k,args[i])
+        else:
+            self.__setattr__(k,dflt_vl[i])
+    return(self)
+
+
+
